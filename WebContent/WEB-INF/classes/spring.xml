@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	<!-- 全局扫描包 -->
+	<context:component-scan base-package="com.erye">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	</context:component-scan>
+	
+	<!-- 数据源 -->
+	<context:property-placeholder location="classpath:dbconfig.properties"/>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+	</bean>
+	
+	<!-- 配置SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis.xml"></property>
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 扫描mapper，实现dao层的自动注入 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.erye.mapper"></property>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"></property>
+	</bean>
+	
+	<!-- 配置SqlSession -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"></constructor-arg>
+	</bean>
+	
+	<!-- 配置事务和日志 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 定义切面类 -->
+	<bean id="logAspect" class="com.erye.aspect.LogAspect"></bean>
+	<!-- 定义日志切面和事务通知 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.erye.service.*.*(..))" id="txpointcut"/>
+		<aop:pointcut expression="execution(* com.erye.*.*.*(..))" id="logpointcut"/>
+		<aop:advisor advice-ref="txadvisor" pointcut-ref="txpointcut"/>
+		<aop:aspect ref="logAspect">
+			<aop:around method="logAround" pointcut-ref="logpointcut"/>
+		</aop:aspect>
+	</aop:config>
+	<tx:advice id="txadvisor" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="query*"/>
+			<tx:method name="update*"/>
+			<tx:method name="delete*"/>
+		</tx:attributes>
+	</tx:advice>
+
+</beans>
