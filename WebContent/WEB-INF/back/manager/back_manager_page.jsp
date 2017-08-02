@@ -8,6 +8,13 @@
 <title>管理页面</title>
 </head>
 <body>
-后台管理页面
+
+	<table  align="center" style="top:50%">
+		<tr>
+			<td><div style="border: 1px"><a href="" style="text-decoration: none"><h3>增加访问用户</h3></a></div></td>
+			<td><div style="border: 1px"><a href="" style="text-decoration: none"><h3>压箱底儿的了</h3></a></div></td>
+		</tr>
+	</table>
+
 </body>
 </html>

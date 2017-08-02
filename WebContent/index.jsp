@@ -26,7 +26,7 @@ function hello() {
 					用户名：
 				</td>
 				<td>
-					<input type="text" name="name" value=""/>
+					<input type="text" name="name" value="admin"/>
 				</td>
 			</tr>
 			<tr>
@@ -34,7 +34,7 @@ function hello() {
 					密码：
 				</td>
 				<td>
-					<input type="password" name="password" value=""/>
+					<input type="password" name="password" value="123456"/>
 				</td>
 			</tr>
 			<tr>
