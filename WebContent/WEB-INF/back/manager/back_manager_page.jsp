@@ -8,13 +8,13 @@
 <title>管理页面</title>
 </head>
 <body>
-
-	<table  align="center" style="top:50%">
+	<table  align="center">
 		<tr>
-			<td><div style="border: 1px"><a href="" style="text-decoration: none"><h3>增加访问用户</h3></a></div></td>
-			<td><div style="border: 1px"><a href="" style="text-decoration: none"><h3>压箱底儿的了</h3></a></div></td>
+			<td><a href="<%=request.getContextPath() %>/back/manager/manageuser" style="text-decoration: none"><h3>增加访问用户</h3></a></td>
+		</tr>
+		<tr>
+			<td><a href="" style="text-decoration: none"><h3>压箱底儿的了</h3></a></td>
 		</tr>
 	</table>
-
 </body>
 </html>

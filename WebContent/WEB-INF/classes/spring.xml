@@ -59,7 +59,7 @@
 	</aop:config>
 	<tx:advice id="txadvisor" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="query*"/>
+			<tx:method name="add*"/>
 			<tx:method name="update*"/>
 			<tx:method name="delete*"/>
 		</tx:attributes>

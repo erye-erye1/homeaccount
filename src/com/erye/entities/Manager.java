@@ -35,6 +35,6 @@ public class Manager {
 	}
 	@Override
 	public String toString() {
-		return "TBL_MANAGER [id=" + id + ", name=" + name + ", password=" + password + "]";
+		return "Manager [id=" + id + ", name=" + name + ", password=" + password + "]";
 	}
 }

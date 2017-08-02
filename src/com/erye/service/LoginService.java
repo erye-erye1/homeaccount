@@ -1,6 +1,5 @@
 package com.erye.service;
 
-import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +7,9 @@ import com.erye.entities.Manager;
 import com.erye.mapper.ManagerMapper;
 
 @Service
-public class ManagerService {
+public class LoginService {
 
-	@Autowired(required=false)
+	@Autowired
 	private ManagerMapper managerMapper;
 	
 	/**
@@ -32,12 +31,5 @@ public class ManagerService {
 			}
 		}*/
 		return null;
-	}
-	
-	/**
-	 * 修改管理的用户名或者密码
-	 */
-	public void updateManager(Manager manager) {
-		managerMapper.updateManagerNameOrPwd(manager);
 	}
 }

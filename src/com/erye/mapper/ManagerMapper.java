@@ -12,9 +12,4 @@ public interface ManagerMapper {
 	 */
 	public Manager queryManagerByNameAndPwd(Manager manager);
 	
-	/**
-	 * 修改管理员名字或者密码
-	 */
-	public void updateManagerNameOrPwd(Manager manager);
-	
 }

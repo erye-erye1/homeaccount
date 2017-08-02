@@ -5,20 +5,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.erye.entities.Manager;
-import com.erye.service.ManagerService;
+import com.erye.service.LoginService;
 
 @Controller
 public class LoginHandler {
 
-	@Autowired(required=false)
-	private ManagerService managerService;
+	@Autowired
+	private LoginService loginService;
 	
 	/**
 	 * 登录
 	 */
 	@RequestMapping("/family/account/login")
 	public String login(Manager manager) {
-		String login = managerService.login(manager);
+		String login = loginService.login(manager);
 		if("admin".equals(login)) {
 			return "back/manager/back_manager_page";
 		}else if("user".equals(login)) {
