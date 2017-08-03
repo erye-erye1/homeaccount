@@ -11,4 +11,16 @@
 	<update id="updateManagerNameOrPwd" parameterType="Manager">
 		update manager set name=#{name}, password=#{password}
 	</update>
+	
+	<!-- 查询account账户的财产总额 -->
+	<select id="queryAccount" resultType="Account">
+		select * from account
+	</select>
+	
+	<!-- 插入收入 -->
+	<insert id="addAccount" parameterType="Account">
+		insert into 
+			account(sum, an, han, extraincome) 
+			values(#{sum}, #{an}, #{han}, #{extraincome})
+	</insert>
 </mapper>
