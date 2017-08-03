@@ -20,7 +20,7 @@
 	<!-- 插入收入 -->
 	<insert id="addAccount" parameterType="Account">
 		insert into 
-			account(sum, an, han, extraincome) 
-			values(#{sum}, #{an}, #{han}, #{extraincome})
+			account(sum, an, han, extraincome, create_time) 
+			values(#{sum}, #{an}, #{han}, #{extraincome}, SYSDATE())
 	</insert>
 </mapper>

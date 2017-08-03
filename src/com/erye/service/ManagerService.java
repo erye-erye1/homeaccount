@@ -21,9 +21,20 @@ public class ManagerService {
 		Integer n = userMapper.addUser(user);
 		return n;
 	}
-
+	
+	/**
+	 * 查询所有用户
+	 */
 	public List<User> queryUser() {
 		return userMapper.queryUser();
+	}
+
+	/**
+	 * 根据用户名删除用户
+	 * @param name : 用户名
+	 */
+	public void deleteUser(String name) {
+		userMapper.deleteUser(name);
 	}
 	
 }

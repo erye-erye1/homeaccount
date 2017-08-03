@@ -1,5 +1,7 @@
 package com.erye.entities;
 
+import java.sql.Date;
+
 public class Account {
 
 	private Integer id;
@@ -7,17 +9,25 @@ public class Account {
 	private Double an;
 	private Double han;
 	private Double extraincome;
+	private Date create_time;
 	
 	public Account() {
 		super();
 	}
-	public Account(Integer id, Double sum, Double an, Double han, Double extraincome) {
+	public Account(Integer id, Double sum, Double an, Double han, Double extraincome, Date create_time) {
 		super();
 		this.id = id;
 		this.sum = sum;
 		this.an = an;
 		this.han = han;
 		this.extraincome = extraincome;
+		this.create_time = create_time;
+	}
+	public Date getCreate_time() {
+		return create_time;
+	}
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
 	}
 	public Integer getId() {
 		return id;

@@ -5,7 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,5 +37,14 @@ public class ManagerHandler {
 	public String addUser(User user) {
 		managerService.addUser(user);
 		return "forward:/back/manager/manageuser";
+	}
+	
+	/**
+	 * 删除个访问用户
+	 */
+	@RequestMapping(value="/back/manage/user/{name}", method=RequestMethod.DELETE)
+	public String deleteUser(@PathVariable("name")String name) {
+		managerService.deleteUser(name);
+		return "redirect:/back/manager/manageuser";
 	}
 }

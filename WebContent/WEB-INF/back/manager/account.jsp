@@ -15,7 +15,27 @@
 			<td align="center" style="width: 166px">肉肉</td>
 			<td align="center" style="width: 166px">二爷</td>
 			<td align="center" style="width: 166px">馅儿饼</td>
+			<td align="center" style="width: 166px">加入时间</td>
 		</tr>
+		<form action="<%=request.getContextPath() %>/back/manage/account" method="post">
+			<tr>
+				<td align="center" style="width: 166px">
+					<input type="text" value=""/>
+				</td>
+				<td align="center" style="width: 166px">
+					<input type="text" name="an"/>
+				</td>
+				<td align="center" style="width: 166px">
+					<input type="text" name="han"/>
+				</td>
+				<td align="center" style="width: 166px">
+					<input type="text" name="extraincome"/>
+				</td>
+				<td align="center" style="width: 166px">
+					<input type="submit" value="添加点儿钱"/>
+				</td>
+			</tr>
+		</form>
 		<c:if test="${accountList != '[]' }">
 			<c:forEach items="${accountList }" var="account">
 				<tr>
@@ -23,17 +43,10 @@
 					<td align="center" style="width: 166px">${account.an }</td>
 					<td align="center" style="width: 166px">${account.han }</td>
 					<td align="center" style="width: 166px">${account.extraincome }</td>
+					<td align="center" style="width: 166px">${account.create_time }</td>
 				</tr>
 			</c:forEach>
 		</c:if>
 	</table>
-	
-	<form action="<%=request.getContextPath() %>/back/manage/account" method="post">
-		肉肉:<input type="text" name="an"/><br><br>
-		二爷:<input type="text" name="han"/><br><br>
-		馅儿饼:<input type="text" name="extraincome"/><br><br>
-		<input type="submit" value="添加收入"/>
-	</form>
-	
 </body>
 </html>

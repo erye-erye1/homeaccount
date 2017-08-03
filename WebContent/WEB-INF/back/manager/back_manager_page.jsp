@@ -13,7 +13,7 @@
 			<td><a href="<%=request.getContextPath() %>/back/manager/manageuser" style="text-decoration: none"><h3>增加访问用户</h3></a></td>
 		</tr>
 		<tr>
-			<td><a href="" style="text-decoration: none"><h3>压箱底儿的了</h3></a></td>
+			<td><a href="<%=request.getContextPath() %>/back/manage/account" style="text-decoration: none"><h3>压箱底儿的了</h3></a></td>
 		</tr>
 	</table>
 </body>

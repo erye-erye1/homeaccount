@@ -13,17 +13,27 @@
 	<table align="center" border="1px">
 		<tr>
 			<td style="width:188px;" align="center">账号</td>
+			<td style="width:188px;" align="center">密码</td>
 			<td style="width:188px;" align="center">权限</td>
 			<td style="width:188px;" align="center">创建时间</td>
 			<td style="width:188px;" align="center">修改时间</td>
+			<td style="width:188px;" align="center">操作</td>
 		</tr>
 		<c:forEach items="${userList }" var="user">
-			<tr>
-				<td style="width:188px;" align="center">${user.name }</td>
-				<td style="width:188px;" align="center">${user.authority }</td>
-				<td style="width:188px;" align="center">${user.create_time }</td>
-				<td style="width:188px;" align="center">${user.modify_time }</td>
-			</tr>
+			<form name="myform" id="myform" action="<%=request.getContextPath() %>/back/manage/user/${user.name }" method="post">
+				<tr>
+					<td style="width:188px;" align="center">${user.name }</td>
+					<td style="width:188px;" align="center">${user.password }</td>
+					<td style="width:188px;" align="center">${user.authority }</td>
+					<td style="width:188px;" align="center">${user.create_time }</td>
+					<td style="width:188px;" align="center">${user.modify_time }</td>
+					<td style="width:188px;" align="center">
+						<input type="hidden" name="_method" id="_method" value="delete"/>
+						<input type="submit" id="delete" onclick="adjustRest('DELETE','_method')" value="删除"/>
+						<input type="submit" id="update" onclick="adjustRest('UPDATE','_method')" value="修改"/>
+					</td>
+				</tr>
+			</form>
 		</c:forEach>
 	</table>
 	<br><br><br><br><br><br>
@@ -49,4 +59,18 @@
 		</table>
 	</form>
 </body>
+
+<script type="text/javascript">
+/* 确定rest风格，参数是delete还是put */
+function adjustRest(delOrUp,_method) {
+	var adjust=document.getElementById(delOrUp);
+	var method=document.getElementById(_method);
+	if(adjust.value=='删除') {
+		method.value='delete';
+	}else if(adjust.value=='修改') {
+		method.value='put';
+	}
+}
+</script>
+
 </html>

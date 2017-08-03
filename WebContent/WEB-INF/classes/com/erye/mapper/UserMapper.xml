@@ -17,4 +17,9 @@
 	<select id="queryUser" resultType="User">
 		select * from user
 	</select>
+	
+	<!-- 根据用户名删除用户 -->
+	<delete id="deleteUser" parameterType="String">
+		delete from user where name=#{name}
+	</delete>
 </mapper>
