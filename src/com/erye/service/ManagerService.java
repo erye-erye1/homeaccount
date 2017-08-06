@@ -36,5 +36,9 @@ public class ManagerService {
 	public void deleteUser(String name) {
 		userMapper.deleteUser(name);
 	}
+
+	public void updateUser(User user) {
+		userMapper.updateUser(user);
+	}
 	
 }

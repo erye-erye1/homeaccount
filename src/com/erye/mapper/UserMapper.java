@@ -22,4 +22,9 @@ public interface UserMapper {
 	 * 根据用户名删除用户
 	 */
 	public void deleteUser(@Param("name")String name);
+	 /**
+	  * 根据创建时间，修改用户
+	 * @param user 
+	  */
+	public void updateUser(User user);
 }

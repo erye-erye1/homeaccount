@@ -19,9 +19,7 @@
 		</tr>
 		<form action="<%=request.getContextPath() %>/back/manage/account" method="post">
 			<tr>
-				<td align="center" style="width: 166px">
-					<input type="text" value=""/>
-				</td>
+				<td align="center" style="width: 166px">${moneySum }</td>
 				<td align="center" style="width: 166px">
 					<input type="text" name="an"/>
 				</td>
@@ -32,7 +30,7 @@
 					<input type="text" name="extraincome"/>
 				</td>
 				<td align="center" style="width: 166px">
-					<input type="submit" value="添加点儿钱"/>
+					<input type="submit" value="添加点儿钱"bxz/>
 				</td>
 			</tr>
 		</form>

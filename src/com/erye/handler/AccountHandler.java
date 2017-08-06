@@ -25,6 +25,14 @@ public class AccountHandler {
 	public String accountHandler(HttpSession session) {
 		List<Account> accountList = accountService.queryAccount();
 		session.setAttribute("accountList", accountList);
+		//计算出总钱数
+		double moneySum = 0.0;
+		if(null != accountList && accountList.size() > 0) {
+			for(int i = 0; i < accountList.size(); i++) {
+				moneySum += accountList.get(i).getSum();
+			}
+		}
+		session.setAttribute("moneySum", moneySum);
 		return "back/manager/account";
 	}
 	
@@ -33,7 +41,10 @@ public class AccountHandler {
 	 */
 	@RequestMapping(value="/back/manage/account", method=RequestMethod.POST)
 	public String accountHandler(Account account) {
-		account.setSum(account.getAn() + account.getHan() + account.getExtraincome());
+		Double an = account.getAn()==null?0.0:account.getAn();
+		Double han = account.getHan()==null?0.0:account.getHan();
+		Double extraincome = account.getExtraincome()==null?0.0:account.getExtraincome();
+		account.setSum(an + han + extraincome);
 		accountService.addAccount(account);
 		return "redirect:/back/manage/account";
 	}

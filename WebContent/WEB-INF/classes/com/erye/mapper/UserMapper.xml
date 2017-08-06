@@ -22,4 +22,9 @@
 	<delete id="deleteUser" parameterType="String">
 		delete from user where name=#{name}
 	</delete>
+	
+	<!-- 根据创建时间修改用户 -->
+	<update id="updateUser" parameterType="User">
+		update user set name=#{name}, password=#{password}, modify_time=SYSDATE() where create_time=#{create_time}
+	</update>
 </mapper>

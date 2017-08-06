@@ -22,15 +22,21 @@
 		<c:forEach items="${userList }" var="user">
 			<form name="myform" id="myform" action="<%=request.getContextPath() %>/back/manage/user/${user.name }" method="post">
 				<tr>
-					<td style="width:188px;" align="center">${user.name }</td>
-					<td style="width:188px;" align="center">${user.password }</td>
+					<td style="width:188px;" align="center">
+						<input type="text" name="name" value="${user.name }"/>
+					</td>
+					<td style="width:188px;" align="center">
+						<input type="text" name="password" value="${user.password }"/>
+					</td>
 					<td style="width:188px;" align="center">${user.authority }</td>
-					<td style="width:188px;" align="center">${user.create_time }</td>
+					<td style="width:188px;" align="center">
+						<input type="text" name="create_time" value="${user.create_time }"/>
+					</td>
 					<td style="width:188px;" align="center">${user.modify_time }</td>
 					<td style="width:188px;" align="center">
 						<input type="hidden" name="_method" id="_method" value="delete"/>
-						<input type="submit" id="delete" onclick="adjustRest('DELETE','_method')" value="删除"/>
-						<input type="submit" id="update" onclick="adjustRest('UPDATE','_method')" value="修改"/>
+						<input type="submit" id="delete" onclick="adjustRest('delete','_method')" value="删除"/>
+						<input type="submit" id="update" onclick="adjustRest('update','_method')" value="修改"/>
 					</td>
 				</tr>
 			</form>

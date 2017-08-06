@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,6 +46,15 @@ public class ManagerHandler {
 	@RequestMapping(value="/back/manage/user/{name}", method=RequestMethod.DELETE)
 	public String deleteUser(@PathVariable("name")String name) {
 		managerService.deleteUser(name);
+		return "redirect:/back/manager/manageuser";
+	}
+	
+	/**
+	 * 修改访问用户的账号或者密码
+	 */
+	@RequestMapping(value="/back/manage/user/{name}", method=RequestMethod.PUT)
+	public String updateUser(User user) {
+		managerService.updateUser(user);
 		return "redirect:/back/manager/manageuser";
 	}
 }
